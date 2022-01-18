@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import {ToDoItem} from './components/ToDoItem';
+import {ToDoCounter} from './components/ToDoCounter';
+import {ToDoList} from './components/ToDoList';
+import {ToDoSearch} from './components/ToDoSearch';
+import {CreateToDoButton} from './components/CreateToDoButton';
+
+
+const todos = [
+  { text: 'Cortar pan', completed: true},
+  { text: 'Tomar el curso de intro a React', completed: false},
+  { text: 'Llorar con la llorona', completed: false},
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {<ToDoCounter/>}
+      {<ToDoSearch/>}
+      <ToDoList>
+        {todos.map(todo =>(
+        <ToDoItem 
+        key={todo.text} 
+        text={todo.text}
+        completed={todo.completed}
+        /> 
+        ))} 
+      </ToDoList>
+      <CreateToDoButton/>
+      <button>+</button>
+    </>
   );
 }
-
+// FAST_REFRESH = false;
+// CHOKIDAR_USEPOLLING = true;
 export default App;
