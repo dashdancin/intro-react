@@ -8,7 +8,7 @@ function CreateToDoButton(props) {
     return (
         <button
         className='CreateToDoButton'
-        onClick={(onClickButton('Aquí se debería abrir el modal'))}
+        onClick={() => onClickButton('Aquí se debería abrir el modal')}
         >
          +
         </button>
