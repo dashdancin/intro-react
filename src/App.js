@@ -8,7 +8,7 @@ import {CreateToDoButton} from './components/CreateToDoButton';
 
 const defaultTodos = [
   { text: 'Cortar pan', completed: true},
-  { text: 'Tomar el curso de intro a React', completed: false},
+  { text: 'Tomar el curso de intro a React', completed: true},
   { text: 'Llorar con la llorona', completed: false},
 ];
 
@@ -31,6 +31,20 @@ function App() {
     });
   }
 
+  const completeTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text)
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos);
+  };
+
+  const deleteTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text)
+    const newTodos = [...todos];
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
+  };
+
   return (
     <>
       <ToDoCounter
@@ -47,6 +61,8 @@ function App() {
           key={todo.text} 
           text={todo.text}
           completed={todo.completed}
+          onComplete={() => completeTodo(todo.text)}
+          onDelete={() => deleteTodo(todo.text)}
         /> 
         ))} 
       </ToDoList>
